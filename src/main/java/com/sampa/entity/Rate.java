@@ -13,6 +13,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@Table(name = "RATE")
 public class Rate {
 
     @Id
@@ -20,10 +21,10 @@ public class Rate {
     private Long id;
 
     @ManyToOne
-    private User author;
+    private SampaUser author;
 
     @ManyToOne
-    private User receiver;
+    private SampaUser receiver;
 
     private Integer rating;
 

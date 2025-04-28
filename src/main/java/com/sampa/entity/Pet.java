@@ -11,6 +11,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@Table(name = "PET")
 public class Pet {
 
     @Id
@@ -19,6 +20,7 @@ public class Pet {
 
     private String name;
 
+    //TODO - ENUM
     private String species;
 
     private String breed;
@@ -30,6 +32,6 @@ public class Pet {
     private String observations;
 
     @ManyToOne
-    private User owner;
+    private SampaUser owner;
 
 }

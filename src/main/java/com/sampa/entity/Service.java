@@ -11,6 +11,7 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@Table(name = "SERVICE")
 public class Service {
 
     @Id
@@ -24,5 +25,5 @@ public class Service {
     private Double pricePerHour;
 
     @ManyToOne
-    private User provider;
+    private SampaUser provider;
 }

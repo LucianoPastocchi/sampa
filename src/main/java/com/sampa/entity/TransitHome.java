@@ -13,6 +13,7 @@ import java.util.List;
 @Setter
 @ToString
 @RequiredArgsConstructor
+@Table(name = "TRANSIT_HOME")
 public class TransitHome {
 
     @Id
@@ -20,7 +21,7 @@ public class TransitHome {
     private Long id;
 
     @ManyToOne
-    private User homeOwner;
+    private SampaUser homeOwner;
 
     private String description;
 

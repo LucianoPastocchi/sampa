@@ -13,7 +13,8 @@ import java.util.List;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class User {
+@Table(name = "SAMPA_USER")
+public class SampaUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

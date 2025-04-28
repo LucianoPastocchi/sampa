@@ -14,14 +14,15 @@ import java.time.LocalTime;
 @Setter
 @ToString
 @RequiredArgsConstructor
-public class Reserve {
+@Table(name = "RESERVATION")
+public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    private User owner;
+    private SampaUser owner;
 
     @ManyToOne
     private Service service;
