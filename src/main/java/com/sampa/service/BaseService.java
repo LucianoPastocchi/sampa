@@ -1,5 +1,7 @@
 package com.sampa.service;
 
+import com.sampa.exception.SampaException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,27 +10,28 @@ import org.springframework.transaction.annotation.Transactional;
  * @param <K> Type of the primary key
  */
 @Transactional(readOnly = true)
+@Slf4j
 public abstract class BaseService<T, K> {
 
     protected final JpaRepository<T, K> repository;
 
-    public BaseService(JpaRepository<T, K> repository) {
+    protected BaseService(JpaRepository<T, K> repository) {
         this.repository = repository;
     }
 
     @Transactional
-    public T save(T entity) {
+    public T save(T entity) throws SampaException {
         beforeSave(entity);
         T savedEntity = repository.save(entity);
         afterSave(savedEntity);
         return savedEntity;
     }
 
-    protected void beforeSave(T entity) {
+    protected void beforeSave(T entity) throws SampaException {
         validateEntity(entity);
     }
 
-    protected void validateEntity(T entity) {
+    protected void validateEntity(T entity) throws SampaException {
         if (entity == null || entity.toString().isEmpty()) {
             throw new IllegalArgumentException("Entity must not be null or empty");
         }
@@ -38,15 +41,16 @@ public abstract class BaseService<T, K> {
                 throw new IllegalArgumentException("Entity ID must not be null or empty");
             }
         } catch (Exception e) {
-            throw new RuntimeException("Failed to get ID from entity", e);
+            throw new SampaException("Failed to get ID from entity", e);
         }
     }
 
-    protected void afterSave(T entity) {
+    protected void afterSave(T entity) throws SampaException {
         try {
             Object id = entity.getClass().getMethod("getId").invoke(entity);
+            log.info("Saved entity {} with ID : {}", entity.getClass().getSimpleName(), id);
         } catch (Exception e) {
-            throw new RuntimeException("Failed to get ID from entity", e);
+            throw new SampaException("Failed to get ID from entity", e);
         }
     }
 }
