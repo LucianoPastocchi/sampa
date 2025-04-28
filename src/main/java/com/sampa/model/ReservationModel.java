@@ -2,6 +2,7 @@ package com.sampa.model;
 
 import com.sampa.entity.SampaUser;
 import com.sampa.entity.Service;
+import com.sampa.enums.ReservationStatus;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -22,6 +23,5 @@ public class ReservationModel {
 
     private LocalTime toTime;
 
-    //TODO - ENUM
-    private String state; // PENDIENTE, ACEPTADA, CANCELADA, FINALIZADA
+    private ReservationStatus status;
 }

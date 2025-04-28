@@ -1,13 +1,13 @@
 package com.sampa.model;
 
 import com.sampa.entity.SampaUser;
+import com.sampa.enums.ServiceType;
 import lombok.Data;
 
 @Data
 public class ServiceModel {
 
-    //TODO - ENUM
-    private String type; // PASEO, CUIDADO, HOGAR_TRANSITO
+    private ServiceType type;
 
     private String description;
 

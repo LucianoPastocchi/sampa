@@ -1,6 +1,7 @@
 package com.sampa.model;
 
 import com.sampa.entity.SampaUser;
+import com.sampa.enums.Species;
 import lombok.Data;
 
 @Data
@@ -8,8 +9,7 @@ public class PetModel {
 
     private String name;
 
-    //TODO - ENUM
-    private String species;
+    private Species species;
 
     private String breed;
 
