@@ -35,6 +35,5 @@ public class Reservation {
 
     private LocalTime toTime;
 
-    //TODO - ENUM
     private String state; // PENDIENTE, ACEPTADA, CANCELADA, FINALIZADA
 }

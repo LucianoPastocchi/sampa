@@ -20,6 +20,8 @@ public class SampaUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String idCard;
+
     private String name;
 
     private String lastname;

@@ -20,7 +20,6 @@ public class Pet {
 
     private String name;
 
-    //TODO - ENUM
     private String species;
 
     private String breed;
