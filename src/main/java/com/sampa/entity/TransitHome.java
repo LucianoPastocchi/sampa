@@ -20,6 +20,7 @@ public class TransitHome {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JoinColumn(nullable = false)
     @ManyToOne
     private SampaUser homeOwner;
 
@@ -27,7 +28,8 @@ public class TransitHome {
 
     //TODO - VER COMO GUARDAR LA LOCACION
     private String location;
-
+    
+    @JoinColumn(nullable = false)
     private Integer capacity;
 
     @OneToMany

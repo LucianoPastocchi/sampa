@@ -20,20 +20,27 @@ public class SampaUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "id_card", length = 50, nullable = false)
     private String idCard;
 
+    @Column(columnDefinition = "text", nullable = false)
     private String name;
 
+    @Column(columnDefinition = "text", nullable = false)
     private String lastname;
 
+    @Column(columnDefinition = "text", nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    @Lob
     private String password;
-
+    
     private String role; // owner, walker, admin
 
     private String phone;
 
+    @Column(columnDefinition = "text")
     private String address;
 
     @OneToMany(mappedBy = "owner")

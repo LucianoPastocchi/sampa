@@ -18,12 +18,15 @@ public class Service {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String type; // PASEO, CUIDADO, HOGAR_TRANSITO
 
     private String description;
 
+    @Column(name = "price_per_hour", nullable = false)
     private Double pricePerHour;
 
+    @JoinColumn(nullable = false)
     @ManyToOne
     private SampaUser provider;
 }

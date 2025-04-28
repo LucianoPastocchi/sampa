@@ -15,6 +15,7 @@ public class SampaUserModel {
 
     private String email;
 
+    //TODO - ENUM
     private String role;
 
     private String phone;

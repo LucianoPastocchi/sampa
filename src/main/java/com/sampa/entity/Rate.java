@@ -26,8 +26,10 @@ public class Rate {
     @ManyToOne
     private SampaUser receiver;
 
+    @Column(nullable = false)
     private Integer rating;
 
+    @Column(length = 500)
     private String comment;
 
     private LocalDate date;
