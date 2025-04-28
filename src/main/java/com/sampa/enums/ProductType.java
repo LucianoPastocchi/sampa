@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum ServiceType {
+public enum ProductType {
 
     WALK("01", "Walk"),
     TRANSIT_HOME("02", "Transit home"),

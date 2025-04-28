@@ -11,15 +11,15 @@ import lombok.ToString;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "SERVICE")
-public class Service {
+@Table(name = "PRODUCT")
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
-    private String type; // PASEO, CUIDADO, HOGAR_TRANSITO
+    private String type;
 
     private String description;
 

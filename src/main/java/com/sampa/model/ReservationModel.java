@@ -1,7 +1,7 @@
 package com.sampa.model;
 
+import com.sampa.entity.Product;
 import com.sampa.entity.SampaUser;
-import com.sampa.entity.Service;
 import com.sampa.enums.ReservationStatus;
 import lombok.Data;
 
@@ -13,7 +13,7 @@ public class ReservationModel {
 
     private SampaUser owner;
 
-    private Service service;
+    private Product service;
 
     private LocalDate fromDate;
 

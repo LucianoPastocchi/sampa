@@ -27,7 +27,7 @@ public class Reservation {
 
     @JoinColumn(nullable = false)
     @ManyToOne
-    private Service service;
+    private Product service;
 
     @Column(name = "from_date")
     private LocalDate fromDate;

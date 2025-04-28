@@ -1,13 +1,13 @@
 package com.sampa.model;
 
 import com.sampa.entity.SampaUser;
-import com.sampa.enums.ServiceType;
+import com.sampa.enums.ProductType;
 import lombok.Data;
 
 @Data
 public class ServiceModel {
 
-    private ServiceType type;
+    private ProductType type;
 
     private String description;
 
