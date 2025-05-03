@@ -1,5 +1,6 @@
 package com.sampa.model;
 
+import com.sampa.enums.Role;
 import lombok.Data;
 
 import java.util.List;
@@ -15,8 +16,9 @@ public class SampaUserModel {
 
     private String email;
 
-    //TODO - ENUM
-    private String role;
+    private String password;
+
+    private Role role;
 
     private String phone;
 

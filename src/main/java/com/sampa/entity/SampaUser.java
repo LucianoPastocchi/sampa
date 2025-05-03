@@ -35,8 +35,8 @@ public class SampaUser {
     @Column(nullable = false)
     @Lob
     private String password;
-    
-    private String role; // owner, walker, admin
+
+    private String role;
 
     private String phone;
 
