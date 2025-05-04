@@ -32,13 +32,28 @@ public class SampaUserService extends BaseService<SampaUser, Long> {
             SampaUser existingUser = sampaUserRepository.findByUserName(user.getUserName())
                     .orElseThrow(() -> new SampaException("User not found with username: " + user.getUserName()));
 
-            existingUser.setIdCard(user.getIdCard());
-            existingUser.setName(user.getName());
-            existingUser.setLastname(user.getLastname());
-            existingUser.setEmail(user.getEmail());
-            existingUser.setRole(user.getRole().getDescription());
-            existingUser.setPhone(user.getPhone());
-            existingUser.setAddress(user.getAddress());
+            if (user.getIdCard() != null && !user.getIdCard().isEmpty()) {
+                existingUser.setIdCard(user.getIdCard());
+            }
+            if (user.getName() != null && !user.getName().isEmpty()) {
+                existingUser.setName(user.getName());
+            }
+            if (user.getLastname() != null && !user.getLastname().isEmpty()) {
+                existingUser.setLastname(user.getLastname());
+            }
+            if (user.getEmail() != null && !user.getEmail().isEmpty()) {
+                existingUser.setEmail(user.getEmail());
+            }
+            if (user.getRole() != null && user.getRole().getDescription() != null && !user.getRole().getDescription().isEmpty()) {
+                existingUser.setRole(user.getRole().getDescription());
+            }
+            if (user.getPhone() != null && !user.getPhone().isEmpty()) {
+                existingUser.setPhone(user.getPhone());
+            }
+            if (user.getAddress() != null && !user.getAddress().isEmpty()) {
+                existingUser.setAddress(user.getAddress());
+            }
+
 
             sampaUserRepository.save(existingUser);
             log.info("User updated successfully: id={}, email={}", existingUser.getId(), existingUser.getEmail());
@@ -77,9 +92,9 @@ public class SampaUserService extends BaseService<SampaUser, Long> {
     }
 
     @Transactional
-    public void addPetToUser(Long userId, Long petId) throws SampaException {
+    public void addPetToUser(String userName, Long petId) throws SampaException {
 
-        SampaUser user = sampaUserRepository.findById(userId)
+        SampaUser user = sampaUserRepository.findByUserName(userName)
                 .orElseThrow(() -> new SampaException("User not found"));
 
         Pet pet = petRepository.findById(petId)
