@@ -10,6 +10,8 @@ public class SampaUserModel {
 
     private String idCard;
 
+    private String userName;
+
     private String name;
 
     private String lastname;

@@ -10,4 +10,8 @@ public class SampaException extends Exception {
     public SampaException(String message, Exception e) {
         super(message, e);
     }
+
+    public SampaException(String message) {
+        super(message);
+    }
 }

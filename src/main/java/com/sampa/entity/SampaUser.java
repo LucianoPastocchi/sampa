@@ -23,6 +23,9 @@ public class SampaUser {
     @Column(name = "id_card", length = 50, nullable = false)
     private String idCard;
 
+    @Column(name = "user_name", nullable = false)
+    private String userName;
+
     @Column(columnDefinition = "text", nullable = false)
     private String name;
 
