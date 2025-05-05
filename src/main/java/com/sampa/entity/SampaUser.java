@@ -30,7 +30,7 @@ public class SampaUser {
     private String name;
 
     @Column(columnDefinition = "text", nullable = false)
-    private String lastname;
+    private String lastName;
 
     @Column(columnDefinition = "text", nullable = false)
     private String email;

@@ -26,6 +26,47 @@ public class SampaUserService extends BaseService<SampaUser, Long> {
         this.passwordEncoder = passwordEncoder;
     }
 
+    public SampaUser createUser(SampaUserModel userModel) throws SampaException {
+
+        if (sampaUserRepository.findByUserName(userModel.getUserName()).isPresent()) {
+            throw new SampaException("User name taken");
+        }
+
+        SampaUser newUser = new SampaUser();
+        newUser.setUserName(userModel.getUserName());
+        newUser.setName(userModel.getName());
+        newUser.setLastName(userModel.getLastName());
+        newUser.setEmail(userModel.getEmail());
+        newUser.setPhone(userModel.getPhone());
+        newUser.setAddress(userModel.getAddress());
+        newUser.setIdCard(userModel.getIdCard());
+        newUser.setRole(userModel.getRole().getDescription());
+
+        newUser.setPassword(passwordEncoder.encode(userModel.getPassword()));
+
+        return sampaUserRepository.save(newUser);
+    }
+
+    @Transactional
+    public SampaUser authenticate(String identifier, String rawPassword) throws SampaException {
+        SampaUser user;
+
+        if (identifier.contains("@")) {
+            user = sampaUserRepository.findByEmail(identifier)
+                    .orElseThrow(() -> new SampaException("Email no registrado"));
+        } else {
+            user = sampaUserRepository.findByUserName(identifier)
+                    .orElseThrow(() -> new SampaException("Nombre de usuario no registrado"));
+        }
+
+        if (!passwordEncoder.matches(rawPassword, user.getPassword())) {
+            throw new SampaException("Contraseña incorrecta");
+        }
+
+        return user;
+    }
+
+
     public SampaUser updateUser(SampaUserModel user) throws SampaException {
 
         try {
@@ -38,8 +79,8 @@ public class SampaUserService extends BaseService<SampaUser, Long> {
             if (user.getName() != null && !user.getName().isEmpty()) {
                 existingUser.setName(user.getName());
             }
-            if (user.getLastname() != null && !user.getLastname().isEmpty()) {
-                existingUser.setLastname(user.getLastname());
+            if (user.getLastName() != null && !user.getLastName().isEmpty()) {
+                existingUser.setLastName(user.getLastName());
             }
             if (user.getEmail() != null && !user.getEmail().isEmpty()) {
                 existingUser.setEmail(user.getEmail());
@@ -83,7 +124,7 @@ public class SampaUserService extends BaseService<SampaUser, Long> {
 
     public void deleteUser(String userName) throws SampaException {
         try {
-            sampaUserRepository.deleteByUsername(userName);
+            sampaUserRepository.deleteByUserName(userName);
             log.info("User {} deleted successfully", userName);
         } catch (Exception e) {
             log.error("Failed to delete user: userName={}, error={}", userName, e.getMessage(), e);

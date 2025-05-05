@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import java.util.Optional;
 
 public interface SampaUserRepository extends JpaRepository<SampaUser, Long>, JpaSpecificationExecutor<SampaUser> {
-    void deleteByUsername(String username);
+    void deleteByUserName(String userName);
 
-    Optional<SampaUser> findByUserName(String username);
+    Optional<SampaUser> findByUserName(String userName);
+
+    Optional<SampaUser> findByEmail(String email);
 }

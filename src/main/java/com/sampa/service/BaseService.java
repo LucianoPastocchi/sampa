@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @param <T> Entity type
  * @param <K> Type of the primary key
  */
-@Transactional(readOnly = true)
 @Slf4j
 public abstract class BaseService<T, K> {
 

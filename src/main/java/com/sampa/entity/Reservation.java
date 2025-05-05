@@ -38,7 +38,7 @@ public class Reservation {
     @Column(name = "from_time")
     private LocalTime fromTime;
 
-    @Column(name = "to_date")
+    @Column(name = "to_time")
     private LocalTime toTime;
 
     private String status; // PENDIENTE, ACEPTADA, CANCELADA, FINALIZADA
