@@ -1,12 +1,16 @@
-import Header from "@/components/header"
-import Footer from "@/components/footer"
-import HeroSection from "@/components/sections/hero-section"
-import ProblemSection from "@/components/sections/problem-section"
-import SolutionSection from "@/components/sections/solution-section"
-import TechnologySection from "@/components/sections/technology-section"
-import FeaturesSection from "@/components/sections/features-section"
-import ValueSection from "@/components/sections/value-section"
-import CTASection from "@/components/sections/cta-section"
+"use client"
+import dynamic from "next/dynamic"
+
+// Importar componentes dinámicamente para asegurar que se rendericen solo en el cliente
+const Header = dynamic(() => import("@/components/header"), { ssr: false })
+const Footer = dynamic(() => import("@/components/footer"), { ssr: false })
+const HeroSection = dynamic(() => import("@/components/sections/hero-section"), { ssr: false })
+const ProblemSection = dynamic(() => import("@/components/sections/problem-section"), { ssr: false })
+const SolutionSection = dynamic(() => import("@/components/sections/solution-section"), { ssr: false })
+const TechnologySection = dynamic(() => import("@/components/sections/technology-section"), { ssr: false })
+const FeaturesSection = dynamic(() => import("@/components/sections/features-section"), { ssr: false })
+const ValueSection = dynamic(() => import("@/components/sections/value-section"), { ssr: false })
+const CTASection = dynamic(() => import("@/components/sections/cta-section"), { ssr: false })
 
 export default function Home() {
   return (
