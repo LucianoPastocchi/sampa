@@ -13,6 +13,7 @@ export const TEXTS = {
     technology: "Tecnología",
     features: "Funcionalidades",
     value: "Valor agregado",
+    search: "Buscar"
   },
   hero: {
     title: "Conectando dueños de mascotas con cuidadores profesionales",

@@ -20,7 +20,7 @@ public class SampaUserController {
     private final SampaUserService sampaUserService;
 
     @PostMapping("/signup")
-    public ResponseEntity<?> signUp(@Valid @RequestBody SampaUserModel userModel) {
+    public ResponseEntity<Object> signUp(@Valid @RequestBody SampaUserModel userModel) {
         try {
             //TODO - REVISAR
             userModel.setRole(Role.PET_OWNER);
@@ -32,7 +32,7 @@ public class SampaUserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
         try {
             SampaUser user = sampaUserService.authenticate(loginRequest.getIdentifier(), loginRequest.getPassword());
             return ResponseEntity.ok(user);
@@ -43,7 +43,7 @@ public class SampaUserController {
 
 
     @PutMapping("/{username}")
-    public ResponseEntity<?> updateUser(@PathVariable String username, @Valid @RequestBody SampaUserModel userModel) {
+    public ResponseEntity<Object> updateUser(@PathVariable String username, @Valid @RequestBody SampaUserModel userModel) {
         try {
             userModel.setUserName(username); // Ensure username consistency
             SampaUser updatedUser = sampaUserService.updateUser(userModel);
@@ -54,7 +54,7 @@ public class SampaUserController {
     }
 
     @PutMapping("/{username}/password")
-    public ResponseEntity<?> updatePassword(
+    public ResponseEntity<Object> updatePassword(
             @PathVariable String username,
             @RequestParam String currentPassword,
             @RequestParam String newPassword
@@ -68,7 +68,7 @@ public class SampaUserController {
     }
 
     @DeleteMapping("/{username}")
-    public ResponseEntity<?> deleteUser(@PathVariable String username) {
+    public ResponseEntity<Object> deleteUser(@PathVariable String username) {
         try {
             sampaUserService.deleteUser(username);
             return ResponseEntity.ok("User deleted successfully");
@@ -78,7 +78,7 @@ public class SampaUserController {
     }
 
     @PostMapping("/{username}/pets/{petId}")
-    public ResponseEntity<?> addPetToUser(@PathVariable String username, @PathVariable Long petId) {
+    public ResponseEntity<Object> addPetToUser(@PathVariable String username, @PathVariable Long petId) {
         try {
             sampaUserService.addPetToUser(username, petId);
             return ResponseEntity.ok("Pet added to user successfully");
