@@ -1,6 +1,7 @@
 package com.sampa.service;
 
 import com.sampa.exception.SampaException;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -16,6 +17,8 @@ import java.nio.charset.StandardCharsets;
 
 @Slf4j
 @Service
+//TODO -SACAR
+@Data
 public class LocationService {
 
     @Value("${mapbox.token}")
