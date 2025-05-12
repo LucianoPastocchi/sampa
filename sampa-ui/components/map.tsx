@@ -9,6 +9,7 @@ mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN!
 export default function Map({ zoom = 12 }) {
   const mapContainer = useRef<HTMLDivElement>(null)
   const map = useRef<mapboxgl.Map | null>(null)
+
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null)
 
   // Obtener ubicación del usuario
@@ -26,6 +27,14 @@ export default function Map({ zoom = 12 }) {
       }
     )
   }, [])
+
+//     async function obtenerLatitudes() {
+//
+//
+//     const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(userLocation)}.json?access_token=pk.eyJ1IjoiZGFuaXBhc3RvY2NoaSIsImEiOiJjbWFmeHM3OTgwN3E1Mm1xNWczaGM4YWhuIn0.MHW0X8pEoalzPRoIFB6cGw`)
+//     const data = await response.json()
+//     const [lng, lat] = data.features[0].center
+//   }
 
   // Inicializar el mapa cuando tengamos la ubicación
   useEffect(() => {

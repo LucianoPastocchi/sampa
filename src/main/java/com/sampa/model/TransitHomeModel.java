@@ -13,7 +13,11 @@ public class TransitHomeModel {
 
     private String description;
 
-    private String location;
+    private String address;
+
+    private Double latitude;
+
+    private Double longitude;
 
     private Integer capacity;
 

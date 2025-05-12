@@ -90,11 +90,11 @@ class SampaUserServiceTest {
 
     @Test
     void testDeleteUser_success() throws SampaException {
-        doNothing().when(sampaUserRepository).deleteByUsername("johnDoe");
+        doNothing().when(sampaUserRepository).deleteByUserName("johnDoe");
 
         sampaUserService.deleteUser("johnDoe");
 
-        verify(sampaUserRepository).deleteByUsername("johnDoe");
+        verify(sampaUserRepository).deleteByUserName("johnDoe");
     }
 
     @Test

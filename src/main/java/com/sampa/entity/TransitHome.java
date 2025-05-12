@@ -26,9 +26,12 @@ public class TransitHome {
 
     private String description;
 
-    //TODO - VER COMO GUARDAR LA LOCACION
-    private String location;
-    
+    private String address;
+
+    private Double latitude;
+
+    private Double longitude;
+
     @JoinColumn(nullable = false)
     private Integer capacity;
 

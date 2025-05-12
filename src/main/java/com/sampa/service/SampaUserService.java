@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Slf4j
 @Service
 public class SampaUserService extends BaseService<SampaUser, Long> {
@@ -146,6 +148,10 @@ public class SampaUserService extends BaseService<SampaUser, Long> {
         petRepository.save(pet);
 
         user.getPets().add(pet);
+    }
+
+    public Optional<SampaUser> findById(Long id) {
+        return sampaUserRepository.findById(id);
     }
 
 

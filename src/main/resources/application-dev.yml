@@ -13,3 +13,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         default_schema: sampa_dev
+
+mapbox:
+  token: pk.eyJ1IjoiZGFuaXBhc3RvY2NoaSIsImEiOiJjbWFmeHM3OTgwN3E1Mm1xNWczaGM4YWhuIn0.MHW0X8pEoalzPRoIFB6cGw
+  url: https://api.mapbox.com/geocoding/v5/mapbox.places/
