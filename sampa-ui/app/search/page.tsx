@@ -51,8 +51,6 @@ export default function SearchPage() {
 
   // Simular la carga de datos desde una API
   useEffect(() => {
-
-      console.log("entro a search");
     setMounted(true)
 
     const fetchHomes = async () => {
@@ -70,7 +68,7 @@ export default function SearchPage() {
           price: 1200,
           rating: 4.8,
           reviewCount: 24,
-          images: ["/placeholder.svg?height=300&width=400"],
+          images: ["/hogarAcogedor.jpg", "apartamento.jpg"],
           amenities: ["Jardín", "Cercado", "Juguetes"],
           petTypes: ["Perros", "Gatos"],
           maxPets: 2,
@@ -87,7 +85,7 @@ export default function SearchPage() {
           price: 950,
           rating: 4.6,
           reviewCount: 18,
-          images: ["/placeholder.svg?height=300&width=400"],
+          images: ["/apartamento.jpg"],
           amenities: ["Climatizado", "Juguetes", "Camas para mascotas"],
           petTypes: ["Perros pequeños", "Gatos"],
           maxPets: 3,
@@ -104,7 +102,7 @@ export default function SearchPage() {
           price: 1500,
           rating: 4.9,
           reviewCount: 32,
-          images: ["/placeholder.svg?height=300&width=400"],
+          images: ["/casaPatioGrande.jpg"],
           amenities: ["Patio grande", "Cercado", "Juguetes", "Cuidado 24h"],
           petTypes: ["Perros", "Gatos", "Aves"],
           maxPets: 4,
@@ -121,7 +119,7 @@ export default function SearchPage() {
           price: 1100,
           rating: 4.7,
           reviewCount: 15,
-          images: ["/placeholder.svg?height=300&width=400"],
+          images: ["/refugio.jpg"],
           amenities: ["Tranquilo", "Climatizado", "Camas para mascotas"],
           petTypes: ["Perros pequeños", "Gatos", "Roedores"],
           maxPets: 2,
@@ -138,7 +136,7 @@ export default function SearchPage() {
           price: 1800,
           rating: 4.9,
           reviewCount: 27,
-          images: ["/placeholder.svg?height=300&width=400"],
+          images: ["/espacioVerde.jpg"],
           amenities: ["Espacio grande", "Juegos", "Entrenamiento", "Paseos"],
           petTypes: ["Perros", "Gatos activos"],
           maxPets: 3,

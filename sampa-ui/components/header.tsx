@@ -63,15 +63,14 @@ export default function Header() {
           <Link href="#valor" className="transition-colors hover:text-foreground/80">
             {t("navigation.value")}
           </Link>
-          <Link href="/search">
+          <Link href="/search" className="transition-colors hover:text-foreground/80">
             {t("navigation.search")}
           </Link>
         </nav>
         <div className="flex items-center gap-2">
-          <Button variant="outline" className="flex items-center gap-1" onClick={handleSearchClick}>
-            <Search size={16} />
-            {t("common.searchButton") || "Buscar"}
-          </Button>
+            <Link href="/publishTransitHome" className="transition-colors hover:text-foreground/80">
+               Ofrecé tu hogar
+            </Link>
           <LanguageSelector />
           <Button>{t("common.contactButton")}</Button>
         </div>

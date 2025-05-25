@@ -64,7 +64,7 @@ export function HomeCard({ home }: HomeCardProps) {
             </div>
           </div>
 
-          <p className="text-gray-600 text-sm mb-3 line-clamp-2">{home.description}</p>
+          <p className="font-semibold text-sm mb-3 line-clamp-2">{home.description}</p>
 
           <div className="flex flex-wrap gap-1 mb-3">
             {home.petTypes.map((type, index) => (
@@ -73,12 +73,12 @@ export function HomeCard({ home }: HomeCardProps) {
               </Badge>
             ))}
             {home.amenities.slice(0, 2).map((amenity, index) => (
-              <Badge key={index} variant="outline" className="bg-gray-50">
+              <Badge key={index} variant="outline" className="bg-rose-50 text-rose-700 border-rose-200">
                 {amenity}
               </Badge>
             ))}
             {home.amenities.length > 2 && (
-              <Badge variant="outline" className="bg-gray-50">
+              <Badge variant="outline" className="bg-rose-50 text-rose-700 border-rose-200">
                 +{home.amenities.length - 2}
               </Badge>
             )}
@@ -87,7 +87,7 @@ export function HomeCard({ home }: HomeCardProps) {
           <div className="flex justify-between items-center">
             <div>
               <span className="font-semibold text-lg">${home.price}</span>
-              <span className="text-gray-500 text-sm"> / noche</span>
+              <span className="font-semibold text-sm"> / noche</span>
             </div>
             <Button size="sm" className="bg-rose-500 hover:bg-rose-600">
               {t("search.viewDetails") || "Ver detalles"}

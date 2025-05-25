@@ -214,7 +214,8 @@ export const en = {
     technology: "Technology",
     features: "Features",
     value: "Added Value",
-    search: "Search"
+    search: "Search",
+    publishHome: "Offer your home"
   },
   hero: {
     title: "Connecting pet owners with professional caregivers",

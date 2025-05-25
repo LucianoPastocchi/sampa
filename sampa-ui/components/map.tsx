@@ -3,13 +3,29 @@
 import { useRef, useEffect, useState } from "react"
 import mapboxgl from "mapbox-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
+import { LocateFixed } from "lucide-react"
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN!
 
-export default function Map({ zoom = 12 }) {
+interface HomeLocation {
+  lat: number
+  lng: number
+}
+
+interface HomeData {
+  id: string
+  name: string
+  location: HomeLocation
+  address: string
+}
+
+interface Props {
+  homes: HomeData[]
+}
+
+export default function Map({ homes }: Props) {
   const mapContainer = useRef<HTMLDivElement>(null)
   const map = useRef<mapboxgl.Map | null>(null)
-
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null)
 
   // Obtener ubicación del usuario
@@ -20,23 +36,13 @@ export default function Map({ zoom = 12 }) {
         const lat = position.coords.latitude
         setUserLocation([lng, lat])
       },
-      (error) => {
-        console.error("No se pudo obtener la ubicación:", error)
-        // Si falla, usar coordenadas por defecto (Buenos Aires)
-        setUserLocation([-58.3816, -34.6037])
+      () => {
+        setUserLocation([-58.3816, -34.6037]) // Buenos Aires
       }
     )
   }, [])
 
-//     async function obtenerLatitudes() {
-//
-//
-//     const response = await fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(userLocation)}.json?access_token=pk.eyJ1IjoiZGFuaXBhc3RvY2NoaSIsImEiOiJjbWFmeHM3OTgwN3E1Mm1xNWczaGM4YWhuIn0.MHW0X8pEoalzPRoIFB6cGw`)
-//     const data = await response.json()
-//     const [lng, lat] = data.features[0].center
-//   }
-
-  // Inicializar el mapa cuando tengamos la ubicación
+  // Inicializar mapa y marcadores
   useEffect(() => {
     if (!userLocation || !mapContainer.current || map.current) return
 
@@ -44,16 +50,44 @@ export default function Map({ zoom = 12 }) {
       container: mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
       center: userLocation,
-      zoom,
+      zoom: 12,
     })
 
-    new mapboxgl.Marker().setLngLat(userLocation).addTo(map.current)
-  }, [userLocation, zoom])
+    new mapboxgl.Marker({ color: "#1E90FF" })
+      .setLngLat(userLocation)
+      .setPopup(new mapboxgl.Popup().setText("Tu ubicación"))
+      .addTo(map.current)
+
+    homes.forEach((home) => {
+      new mapboxgl.Marker()
+        .setLngLat([home.location.lng, home.location.lat])
+        .setPopup(new mapboxgl.Popup().setText(home.name))
+        .addTo(map.current!)
+    })
+
+    map.current.addControl(new mapboxgl.NavigationControl())
+  }, [userLocation, homes])
+
+  // Función para centrar el mapa
+  const handleCenterOnUser = () => {
+    if (map.current && userLocation) {
+      map.current.flyTo({ center: userLocation, zoom: 14 })
+    }
+  }
 
   return (
-    <div
-      ref={mapContainer}
-      className="w-full h-[500px] rounded-lg"
-    />
+    <div className="relative w-full h-[500px] rounded-lg">
+      <div ref={mapContainer} className="w-full h-full rounded-lg" />
+
+      <button
+        onClick={handleCenterOnUser}
+        className="absolute top-24 right-1 bg-white border border-gray-300 shadow-md rounded-full p-2 text-black hover:bg-gray-100 z-10"
+        aria-label="Centrar en mi ubicación"
+      >
+        <LocateFixed size={20} />
+      </button>
+
+    </div>
   )
 }
+
