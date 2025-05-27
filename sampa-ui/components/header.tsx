@@ -66,6 +66,9 @@ export default function Header() {
           <Link href="/search" className="transition-colors hover:text-foreground/80">
             {t("navigation.search")}
           </Link>
+          <Link href="/walkers" className="transition-colors hover:text-foreground/80">
+            Encontrale su paseador
+          </Link>
         </nav>
         <div className="flex items-center gap-2">
             <Link href="/publishTransitHome" className="transition-colors hover:text-foreground/80">
