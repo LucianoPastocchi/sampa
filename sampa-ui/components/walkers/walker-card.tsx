@@ -32,13 +32,12 @@ export function WalkerCard({ walker }: WalkerCardProps) {
         <div className="flex flex-col md:flex-row gap-4">
           {/* Avatar y información básica */}
           <div className="flex items-start gap-4">
-            <div className="relative">
+            <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-white shadow-md">
               <Image
                 src={walker.avatar || "/placeholder.svg"}
                 alt={walker.name}
-                width={80}
-                height={80}
-                className="rounded-full object-cover"
+                fill
+                className="object-cover"
               />
               {walker.verified && (
                 <div className="absolute -bottom-1 -right-1 bg-green-500 rounded-full p-1">

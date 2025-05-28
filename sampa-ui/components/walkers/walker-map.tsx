@@ -3,8 +3,7 @@
 import { useEffect, useRef, useState } from "react"
 import mapboxgl from "mapbox-gl"
 import "mapbox-gl/dist/mapbox-gl.css"
-import { Shield, Star } from "lucide-react"
-import Image from "next/image"
+import { LocateFixed } from "lucide-react"
 import { useLanguage } from "@/lib/i18n/language-context"
 import * as turf from "@turf/turf"
 
@@ -43,17 +42,14 @@ export default function WalkerMap({ walkers }: WalkerMapProps) {
       zoom: 12,
     })
 
-    // Esperar a que cargue el estilo del mapa
     map.current.on("load", () => {
-      // Ubicación del usuario
+      // Marcador azul estándar para ubicación del usuario
       new mapboxgl.Marker({ color: "#1E90FF" })
         .setLngLat(userLocation)
         .setPopup(new mapboxgl.Popup().setText("Tu ubicación"))
         .addTo(map.current!)
 
-      // Paseadores con círculo de radio
-      walkers.forEach((walker, index) => {
-        // Crear marcador personalizado
+      walkers.forEach((walker) => {
         const el = document.createElement("div")
         el.className = "w-12 h-12 rounded-full overflow-hidden border-2 border-white shadow-md"
         el.style.backgroundImage = `url(${walker.avatar || "/placeholder.svg"})`
@@ -77,7 +73,6 @@ export default function WalkerMap({ walkers }: WalkerMapProps) {
           )
           .addTo(map.current!)
 
-        // Crear círculo con turf
         const circle = turf.circle([walker.location.lng, walker.location.lat], 1, {
           steps: 64,
           units: "kilometers",
@@ -85,7 +80,6 @@ export default function WalkerMap({ walkers }: WalkerMapProps) {
 
         const sourceId = `walker-radius-${walker.id}`
 
-        // Agregar fuente y capa
         map.current!.addSource(sourceId, {
           type: "geojson",
           data: circle,
@@ -97,7 +91,7 @@ export default function WalkerMap({ walkers }: WalkerMapProps) {
           source: sourceId,
           layout: {},
           paint: {
-            "fill-color": "#f43f5e", // rosa
+            "fill-color": "#f43f5e",
             "fill-opacity": 0.2,
           },
         })
@@ -107,10 +101,23 @@ export default function WalkerMap({ walkers }: WalkerMapProps) {
     })
   }, [userLocation, walkers])
 
+  const handleCenterOnUser = () => {
+    if (map.current && userLocation) {
+      map.current.flyTo({ center: userLocation, zoom: 14 })
+    }
+  }
 
   return (
     <div className="relative w-full h-[500px] rounded-lg border border-gray-200 overflow-hidden">
       <div ref={mapContainer} className="w-full h-full" />
+
+      <button
+        onClick={handleCenterOnUser}
+        className="absolute top-24 right-1 bg-white border border-gray-300 shadow-md rounded-full p-2 text-black hover:bg-gray-100 z-10"
+        aria-label="Centrar en mi ubicación"
+      >
+        <LocateFixed size={20} />
+      </button>
     </div>
   )
 }
