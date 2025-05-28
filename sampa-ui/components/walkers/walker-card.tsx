@@ -27,7 +27,7 @@ export function WalkerCard({ walker }: WalkerCardProps) {
   }
 
   return (
-    <Card className="overflow-hidden hover:shadow-md transition-shadow duration-300">
+<Card className="overflow-hidden hover:shadow-md transition-shadow duration-300 bg-rose-50">
       <CardContent className="p-6">
         <div className="flex flex-col md:flex-row gap-4">
           {/* Avatar y información básica */}
@@ -48,7 +48,7 @@ export function WalkerCard({ walker }: WalkerCardProps) {
 
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-1">
-                <h3 className="font-semibold text-lg">{walker.name}</h3>
+                <h3 className="font-semibold text-lg text-black">{walker.name}</h3>
                 {walker.verified && (
                   <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
                     <Shield size={12} className="mr-1" />
@@ -59,33 +59,35 @@ export function WalkerCard({ walker }: WalkerCardProps) {
 
               <div className="flex items-center gap-4 mb-2">
                 <div className="flex items-center">
-                  <Star size={16} className="text-yellow-500 mr-1" />
-                  <span className="font-medium">{walker.rating}</span>
-                  <span className="text-gray-500 text-sm ml-1">({walker.reviewCount} reseñas)</span>
+                  <Star size={16} className="text-yellow-500 mr-1" fill="#facc15" />
+                  <span className="font-medium text-black">{walker.rating}</span>
+                  <span className="text-sm ml-1 text-black">({walker.reviewCount} reseñas)</span>
                 </div>
 
-                <div className="flex items-center text-gray-500">
-                  <Award size={16} className="mr-1" />
-                  <span className="text-sm">{walker.experience} años de experiencia</span>
+                <div className="flex items-center">
+                  <Award size={16} color="#facc15" className="mr-1" fill="#facc15"/>
+                  <span className="text-sm text-black font-semibold">
+                    {walker.experience} {walker.experience === 1 ? "año" : "años"} de experiencia
+                  </span>
                 </div>
               </div>
 
               <div className="flex items-center text-gray-500 mb-3">
-                <MapPin size={14} className="mr-1" />
-                <span className="text-sm">{walker.address}</span>
+                <MapPin size={14} className="mr-1" color="black"/>
+                <span className="text-sm text-gray-600 font-semibold">{walker.address}</span>
               </div>
 
-              <p className="text-gray-600 text-sm mb-3 line-clamp-2">{walker.description}</p>
+              <p className="text-sm mb-3 line-clamp-2 text-black">{walker.description}</p>
 
               {/* Servicios */}
               <div className="flex flex-wrap gap-1 mb-3">
                 {walker.services.slice(0, 3).map((service, index) => (
-                  <Badge key={index} variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs">
+                  <Badge key={index} variant="outline" className="bg-blue-50 text-blue-700 border-blue-700 text-xs">
                     {service}
                   </Badge>
                 ))}
                 {walker.services.length > 3 && (
-                  <Badge variant="outline" className="bg-gray-50 text-xs">
+                  <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-700 text-xs">
                     +{walker.services.length - 3} más
                   </Badge>
                 )}
@@ -94,12 +96,12 @@ export function WalkerCard({ walker }: WalkerCardProps) {
               {/* Especialidades */}
               <div className="flex flex-wrap gap-1 mb-3">
                 {walker.specialties.slice(0, 2).map((specialty, index) => (
-                  <Badge key={index} variant="outline" className="bg-rose-50 text-rose-700 border-rose-200 text-xs">
+                  <Badge key={index} variant="outline" className="bg-rose-50 text-rose-700 border-rose-700 text-xs">
                     {specialty}
                   </Badge>
                 ))}
                 {walker.specialties.length > 2 && (
-                  <Badge variant="outline" className="bg-gray-50 text-xs">
+                  <Badge variant="outline" className="bg-rose-50 text-rose-700 border-rose-700 text-xs">
                     +{walker.specialties.length - 2} especialidades
                   </Badge>
                 )}
@@ -111,28 +113,37 @@ export function WalkerCard({ walker }: WalkerCardProps) {
           <div className="md:w-48 flex flex-col justify-between">
             <div className="text-right mb-4">
               <div className="text-2xl font-bold text-rose-600">${walker.pricePerWalk}</div>
-              <div className="text-sm text-gray-500">por paseo</div>
+              <div className="text-sm text-black font-semibold">por paseo</div>
               <div className="flex items-center justify-end mt-1">
                 <div className={`w-2 h-2 rounded-full mr-2 ${walker.available ? "bg-green-500" : "bg-gray-400"}`}></div>
-                <span className="text-xs text-gray-500">{walker.available ? "Disponible" : "No disponible"}</span>
+                <span className="text-xs text-black font-semibold">{walker.available ? "Disponible" : "No disponible"}</span>
               </div>
             </div>
 
             <div className="space-y-2">
-              <Button onClick={() => setShowDetails(!showDetails)} variant="outline" className="w-full" size="sm">
+              <Button
+                onClick={() => setShowDetails(!showDetails)}
+                className="w-full bg-slate-700 text-white hover:bg-slate-400 text-sm"
+              >
                 {showDetails ? "Ocultar detalles" : "Ver detalles"}
               </Button>
-              <Button onClick={handleContact} className="w-full bg-rose-500 hover:bg-rose-600" size="sm">
+
+              <Button
+                onClick={handleContact}
+                className="w-full bg-rose-500 hover:bg-rose-600 text-white text-sm font-medium shadow-sm"
+              >
                 <MessageCircle size={14} className="mr-1" />
                 Contactar
               </Button>
             </div>
+
+
           </div>
         </div>
 
         {/* Detalles expandidos */}
         {showDetails && (
-          <div className="mt-4 pt-4 border-t space-y-4">
+          <div className="mt-4 pt-4 border-t space-y-4 text-black">
             <div>
               <h4 className="font-medium mb-2 flex items-center">
                 <Clock size={16} className="mr-2" />
