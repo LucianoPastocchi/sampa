@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: sampa_dev
       POSTGRES_PASSWORD: 1234
     ports:
-      - "5433:5432"
+      - "5432:5432"
     networks:
       - sampa-net
 
