@@ -48,23 +48,8 @@ export default function Header() {
           </Link>
         </div>
         <nav className="hidden md:flex items-center gap-6 text-sm">
-          <Link href="#problema" className="transition-colors hover:text-foreground/80">
-            {t("navigation.problem")}
-          </Link>
-          <Link href="#solucion" className="transition-colors hover:text-foreground/80">
-            {t("navigation.solution")}
-          </Link>
-          <Link href="#tecnologia" className="transition-colors hover:text-foreground/80">
-            {t("navigation.technology")}
-          </Link>
-          <Link href="#funcionalidades" className="transition-colors hover:text-foreground/80">
-            {t("navigation.features")}
-          </Link>
-          <Link href="#valor" className="transition-colors hover:text-foreground/80">
-            {t("navigation.value")}
-          </Link>
           <Link href="/search" className="transition-colors hover:text-foreground/80">
-            {t("navigation.search")}
+            Hogares
           </Link>
           <Link href="/walkers" className="transition-colors hover:text-foreground/80">
             Encontrale su paseador
@@ -75,7 +60,14 @@ export default function Header() {
                Ofrecé tu hogar
             </Link>
           <LanguageSelector />
-          <Button>{t("common.contactButton")}</Button>
+          <Link href="/login">
+             <Button>Iniciar Sesión</Button>
+          </Link>
+          <Link href="/signup">
+              <Button size="lg" className="bg-rose-500 hover:bg-rose-600">
+                Registrarse
+            </Button>
+          </Link>
         </div>
       </div>
     </header>

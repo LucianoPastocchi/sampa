@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_DB: sampa_dev_db
+      POSTGRES_USER: sampa_dev
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5433:5432"
+    networks:
+      - sampa-net
+
+  api:
+    build: .
+    depends_on:
+      - db
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    ports:
+      - "8080:8080"
+    networks:
+      - sampa-net
+
+  frontend:
+    build:
+      context: ./sampa-ui
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - sampa-net
+    depends_on:
+      - api
+
+networks:
+  sampa-net:

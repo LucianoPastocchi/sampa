@@ -13,6 +13,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { useLanguage } from "@/lib/i18n/language-context"
 import LanguageSelector from "@/components/language-selector"
+import {TEXTS} from "/constants.ts"
 
 export default function LoginPage() {
   const { t, isLoaded } = useLanguage()
@@ -73,7 +74,7 @@ export default function LoginPage() {
         const errorData = await response.json().catch(() => null)
         throw new Error(
           errorData?.message ||
-            (response.status === 401 ? t("auth.login.invalidCredentials") : `Error: ${response.status}`),
+            (response.status === 401 ? TEXTS.auth.login.invalidCredentials : `Error: ${response.status}`),
         )
       }
 
@@ -107,7 +108,7 @@ export default function LoginPage() {
       <div className="flex items-center justify-between w-full max-w-md mb-8">
         <Link href="/" className="flex items-center gap-2">
           <Heart className="h-8 w-8 text-rose-500" />
-          <span className="text-2xl font-bold">{t("common.appName")}</span>
+          <span className="text-2xl font-bold text-rose-500">{TEXTS.common.appName}</span>
         </Link>
         <LanguageSelector />
       </div>
@@ -115,7 +116,7 @@ export default function LoginPage() {
       {showSuccessMessage && (
         <Alert className="mb-4 bg-green-50 text-green-800 border-green-200 w-full max-w-md">
           <CheckCircle className="h-4 w-4 text-green-600" />
-          <AlertDescription>{t("auth.login.successMessage")}</AlertDescription>
+          <AlertDescription>{TEXTS.auth.login.successMessage}</AlertDescription>
         </Alert>
       )}
 
@@ -127,13 +128,13 @@ export default function LoginPage() {
 
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">{t("auth.login.title")}</CardTitle>
-          <CardDescription className="text-center">{t("auth.login.description")}</CardDescription>
+          <CardTitle className="text-2xl font-bold text-center">{TEXTS.auth.login.title}</CardTitle>
+          <CardDescription className="text-center">{TEXTS.auth.login.description}</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="identifier">{t("auth.login.identifier")}</Label>
+              <Label htmlFor="identifier">{TEXTS.auth.login.identifier}</Label>
               <Input
                 id="identifier"
                 name="identifier"
@@ -145,9 +146,9 @@ export default function LoginPage() {
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="password">{t("auth.login.password")}</Label>
+                <Label htmlFor="password">{TEXTS.auth.login.password}</Label>
                 <Link href="/forgot-password" className="text-xs text-rose-500 hover:underline">
-                  {t("auth.login.forgotPassword")}
+                  {TEXTS.auth.login.forgotPassword}
                 </Link>
               </div>
               <div className="relative">
@@ -204,18 +205,18 @@ export default function LoginPage() {
               </div>
             </div>
             <Button type="submit" className="w-full bg-rose-500 hover:bg-rose-600" disabled={isLoading}>
-              {isLoading ? t("auth.login.loadingButton") : t("auth.login.submitButton")}
+              {isLoading ? TEXTS.auth.login.loadingButton : TEXTS.auth.login.submitButton}
             </Button>
           </form>
         </CardContent>
         <CardFooter className="flex flex-col space-y-2">
           <div className="text-center text-sm">
-            {t("auth.login.signupLink")}{" "}
+            {TEXTS.auth.login.signupLink}{" "}
             <Link href="/signup" className="text-rose-500 hover:underline">
-              {t("auth.login.signupLinkText")}
+              {TEXTS.auth.login.signupLinkText}
             </Link>
           </div>
-          <div className="text-center text-xs text-gray-500">{t("auth.login.termsFooter")}</div>
+          <div className="text-center text-xs text-gray-500">{TEXTS.auth.login.termsFooter}</div>
         </CardFooter>
       </Card>
     </div>

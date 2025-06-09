@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useLanguage } from "@/lib/i18n/language-context"
 import { useEffect, useState } from "react"
+import {TEXTS} from "/constants.ts"
 
 export default function HeroSection() {
   const { t, isLoaded } = useLanguage()
@@ -25,24 +26,19 @@ export default function HeroSection() {
         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">{t("hero.title")}</h1>
-              <p className="max-w-[600px] text-gray-500 md:text-xl">{t("hero.description")}</p>
+              <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">{TEXTS.hero.title}</h1>
+              <p className="max-w-[600px] text-gray-500 md:text-xl">{TEXTS.hero.description}</p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <Button size="lg" className="bg-rose-500 hover:bg-rose-600">
-                {t("hero.learnMoreButton")}
+                {TEXTS.hero.learnMoreButton}
               </Button>
-              <Link href="/signup">
-                <Button size="lg" variant="outline">
-                  {t("hero.signUpButton")}
-                </Button>
-              </Link>
             </div>
           </div>
           <div className="flex items-center justify-center">
             <Image
-              src="/placeholder.svg?height=550&width=450"
-              width={450}
+              src="/heroImage.jpg"
+              width={600}
               height={550}
               alt="Aplicación PetConnect"
               className="rounded-xl object-cover shadow-lg"
